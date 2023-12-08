@@ -28,13 +28,17 @@ public class ActionNodeAttack : ActionNodeAction
         switch (_UnitGame)
         {
             case UnitGame.Zombie:
-                if (_IACharacterActions is IACharacterActions)
+                if (_IACharacterActions is IACharacterActionsZombie)
                 {
                     ((IACharacterActionsZombie)_IACharacterActions).Attack();
                 }
 
                 break;
             case UnitGame.Soldier:
+                if (_IACharacterActions is IACharacterActionsSoldier)
+                {
+                    ((IACharacterActionsSoldier)_IACharacterActions).Attack();
+                }
 
                 break;
             case UnitGame.None:

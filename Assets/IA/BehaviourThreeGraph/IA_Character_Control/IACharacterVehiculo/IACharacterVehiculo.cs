@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class IACharacterVehiculo : IACharacterControl
 {
+    protected CalculateDiffuse _CalculateDiffuse;
+    protected float speedRotation = 0;
 
     public float RangeWander;
     Vector3 positionWander;
@@ -13,16 +15,40 @@ public class IACharacterVehiculo : IACharacterControl
     {
         base.LoadComponent();
         positionWander = RandoWander(transform.position, RangeWander);
+        _CalculateDiffuse = GetComponent<CalculateDiffuse>();
     }
     public virtual void LookEnemy()
     {
         if (AIEye.ViewEnemy == null) return;
-
-        //Quaternion rot = Quaternion.LookRotation(AIEye.ViewEnemy.transform.position);
-        //rot.x = 0;
-        //rot.z = 0;
-        //transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 50);
+        Vector3 dir = (AIEye.ViewEnemy.transform.position - transform.position).normalized;
+        Quaternion rot = Quaternion.LookRotation(dir);
+        rot.x = 0;
+        rot.z = 0;
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 50);
     }
+    public virtual void LookPosition(Vector3 position)
+    {
+
+        Vector3 dir = (position - transform.position).normalized;
+        Quaternion rot = Quaternion.LookRotation(dir);
+        rot.x = 0;
+        rot.z = 0;
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * speedRotation);
+    }
+    public virtual void LookRotationCollider()
+    {
+
+        if (_CalculateDiffuse.Collider)
+        {
+            speedRotation = _CalculateDiffuse.speedRotation;
+
+            Vector3 posNormal = _CalculateDiffuse.hit.point + _CalculateDiffuse.hit.normal * 2;
+
+            LookPosition(posNormal);
+        }
+    }
+
+
     public virtual void MoveToPosition(Vector3 pos)
     {
         agent.SetDestination(pos);
@@ -54,7 +80,6 @@ public class IACharacterVehiculo : IACharacterControl
     public virtual void MoveToWander()
     {
         if (AIEye.ViewEnemy != null) return;
-        
 
         float distance = (transform.position - positionWander).magnitude;
 

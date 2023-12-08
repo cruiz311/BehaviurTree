@@ -34,7 +34,11 @@ public class ActionFollowEnemy : ActionNodeVehicle
 
                 break;
             case UnitGame.Soldier:
-
+                if (_IACharacterVehiculo is IACharacterVehiculoSoldier)
+                {
+                    ((IACharacterVehiculoSoldier)_IACharacterVehiculo).MoveToEnemy();
+                    ((IACharacterVehiculoSoldier)_IACharacterVehiculo).LookEnemy();
+                }
                 break;
             case UnitGame.None:
                 break;

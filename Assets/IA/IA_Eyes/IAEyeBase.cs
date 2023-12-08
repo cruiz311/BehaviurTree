@@ -199,11 +199,12 @@ public class DataView : DataViewBase
 }
  
 
-public class AIEyeBase : MonoBehaviour
+public class IAEyeBase : MonoBehaviour
 {
     protected int count = 0;
     // protected Collider[] colliders = new Collider[10];
     public DataView mainDataView = new DataView();
+    public DataView RadioActionDataView = new DataView();
     public int CountEnemyView = 0;
     #region Rate
     protected int index = 0;

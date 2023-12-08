@@ -5,9 +5,13 @@ using UnityEngine;
 public class IACharacterActionsZombie : IACharacterActions
 {
 
-    float FrameRate = 0;
+    public float FrameRate = 0;
     public float Rate=1;
-
+    public int damageZombie;
+    private void Start()
+    {
+        LoadComponent();
+    }
     public override void LoadComponent()
     {
         base.LoadComponent();
@@ -15,10 +19,19 @@ public class IACharacterActionsZombie : IACharacterActions
     }
     public void Attack()
     {
+         
         if(FrameRate>Rate)
         {
             FrameRate = 0;
-            Debug.Log("Attack "+Time.time);
+            IAEyeZombieAttack _IAEyeZombieAttack = ((IAEyeZombieAttack)AIEye);
+            
+            if (_IAEyeZombieAttack != null &&
+                _IAEyeZombieAttack.ViewEnemy != null)
+            {
+                
+                _IAEyeZombieAttack.ViewEnemy.Damage(damageZombie, health);
+            }
+            
         }
         FrameRate += Time.deltaTime;
 

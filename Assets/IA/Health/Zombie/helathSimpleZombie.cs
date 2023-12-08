@@ -10,9 +10,5 @@ public class helathSimpleZombie : healthZombie
         base.LoadComponent();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

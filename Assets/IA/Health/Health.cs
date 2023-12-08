@@ -12,6 +12,7 @@ public enum UnitGame
 }
 public class Health : MonoBehaviour
 {
+
     [Header("imageUI")]
     public Image HealthBarLocal;
 
@@ -45,10 +46,12 @@ public class Health : MonoBehaviour
 
     public virtual void Damage(int damage,Health enemy)
     {
+        
         if (Importal) return;
-
+       
         if (!IsDead)
         {
+           
             if ((health - damage) > 0)
                 health -= damage;
             else
