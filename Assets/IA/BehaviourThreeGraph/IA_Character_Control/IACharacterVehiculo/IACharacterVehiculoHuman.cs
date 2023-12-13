@@ -13,6 +13,7 @@ public class IACharacterVehiculoHuman : IACharacterVehiculo
     {
         base.LookEnemy();
     }
+     
     public override void LookPosition(Vector3 position)
     {
         base.LookPosition(position);
@@ -31,6 +32,15 @@ public class IACharacterVehiculoHuman : IACharacterVehiculo
     public override void MoveToEnemy()
     {
         base.MoveToEnemy();
+    }
+    public virtual void MoveToItem()
+    {
+        if (AIEye is IAEyeHuman)
+        {
+            if (((IAEyeHuman)AIEye).Item == null) return;
+            LookPosition(((IAEyeHuman)AIEye).Item.transform.position);
+            MoveToPosition(((IAEyeHuman)AIEye).Item.transform.position);
+        }
     }
     public override void MoveToAllied()
     {
@@ -88,34 +98,36 @@ public class IACharacterVehiculoHuman : IACharacterVehiculo
     }
     public void DrawGizmos()
     {
-        Ray[] arrayRay = new Ray[3];
-        arrayRay[0] = new Ray(health.AimOffset.position, health.AimOffset.right);
-        arrayRay[1] = new Ray(health.AimOffset.position, -health.AimOffset.forward);
-        arrayRay[2] = new Ray(health.AimOffset.position, -health.AimOffset.right);
-        for (int i = 0; i < arrayRay.Length; i++)
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(arrayRay[i], out hit, 3, AIEye.mainDataView.occlusionlayers))
+         if(health != null)
+         {
+            Ray[] arrayRay = new Ray[3];
+            arrayRay[0] = new Ray(health.AimOffset.position, health.AimOffset.right);
+            arrayRay[1] = new Ray(health.AimOffset.position, -health.AimOffset.forward);
+            arrayRay[2] = new Ray(health.AimOffset.position, -health.AimOffset.right);
+            for (int i = 0; i < arrayRay.Length; i++)
             {
-                Gizmos.color = Color.red;
+                RaycastHit hit;
+                if (Physics.Raycast(arrayRay[i], out hit, 3, AIEye.mainDataView.occlusionlayers))
+                {
+                    Gizmos.color = Color.red;
 
+                }
+                else
+                {
+                    Gizmos.color = Color.blue;
+                }
+
+                Gizmos.DrawLine(arrayRay[i].origin, arrayRay[i].origin + arrayRay[i].direction * 3f);
+                Gizmos.DrawSphere(arrayRay[i].origin + arrayRay[i].direction * 3f, 0.7f);
             }
-            else
+
+
+            Gizmos.color = Color.yellow;
+            if (normales != Vector3.zero)
             {
-                Gizmos.color = Color.blue;
+                Gizmos.DrawLine(health.AimOffset.position, health.AimOffset.position + normales * 2f);
+                Gizmos.DrawSphere(health.AimOffset.position + normales * 2f, 0.5f);
             }
-
-            Gizmos.DrawLine(arrayRay[i].origin, arrayRay[i].origin + arrayRay[i].direction * 3f);
-            Gizmos.DrawSphere(arrayRay[i].origin + arrayRay[i].direction * 3f, 0.7f);
-        }
-
-
-        Gizmos.color = Color.yellow;
-        if (normales != Vector3.zero)
-        {
-            Gizmos.DrawLine(health.AimOffset.position, health.AimOffset.position + normales * 2f);
-            Gizmos.DrawSphere(health.AimOffset.position + normales * 2f, 0.5f);
-        }
-
+         }   
     }
 }

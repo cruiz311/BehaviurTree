@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2232553785002908901}
   - component: {fileID: 8710586618203069385}
   - component: {fileID: 1816623034024197252}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ImageBackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 411760507778422217}
   - component: {fileID: 411760507778422216}
   - component: {fileID: 411760507778422225}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: NPCZombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411760507778422215}
-  m_LocalRotation: {x: -0, y: -0.9020772, z: -0, w: -0.43157473}
+  m_LocalRotation: {x: -0, y: -0.90207756, z: 0, w: -0.43157402}
   m_LocalPosition: {x: 3.95, y: -0.002, z: 9.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -195,10 +195,10 @@ MonoBehaviour:
     IsDrawGizmo: 0
     Scanlayers:
       serializedVersion: 2
-      m_Bits: 64
+      m_Bits: 192
     occlusionlayers:
       serializedVersion: 2
-      m_Bits: 256
+      m_Bits: 512
     Sight: 0
     meshColorInSight: {r: 1, g: 0, b: 0, a: 0.4392157}
     InsideObject: 1
@@ -212,10 +212,10 @@ MonoBehaviour:
     IsDrawGizmo: 0
     Scanlayers:
       serializedVersion: 2
-      m_Bits: 64
+      m_Bits: 192
     occlusionlayers:
       serializedVersion: 2
-      m_Bits: 256
+      m_Bits: 512
     Sight: 0
     meshColorInSight: {r: 1, g: 0, b: 0, a: 1}
     InsideObject: 1
@@ -225,7 +225,6 @@ MonoBehaviour:
   IsDrawGizmo: 0
   AimOffset: {fileID: 411760508231922177}
   ViewEnemy: {fileID: 0}
-  ViewAllie: {fileID: 0}
   AttackDataView:
     angle: 52.4
     height: 2.18
@@ -331,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FrameRate: 0
-  Rate: 0.1
+  Rate: 0.8
   damageZombie: 5
 --- !u!114 &411760507778422225
 MonoBehaviour:
@@ -473,7 +472,7 @@ GameObject:
   - component: {fileID: 411760507813235460}
   - component: {fileID: 411760507813235459}
   - component: {fileID: 411760507813235458}
-  m_Layer: 1
+  m_Layer: 0
   m_Name: Vision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -794,7 +793,7 @@ GameObject:
   - component: {fileID: 411760509370486567}
   - component: {fileID: 411760509370486569}
   - component: {fileID: 411760509370486568}
-  m_Layer: 1
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -879,7 +878,7 @@ GameObject:
   - component: {fileID: 2833812428925034881}
   - component: {fileID: 8578875088235343472}
   - component: {fileID: 1451312718733985763}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: CanvasHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -980,7 +979,7 @@ GameObject:
   - component: {fileID: 2972053240302004104}
   - component: {fileID: 8559806760644501675}
   - component: {fileID: 5563837409010521369}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ImageHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}

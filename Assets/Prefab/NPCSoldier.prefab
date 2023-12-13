@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7774162632998262849}
   - component: {fileID: 1440207497206324533}
   - component: {fileID: 6969819745615147623}
-  m_Layer: 1
+  m_Layer: 0
   m_Name: Vision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 6544171016115396672}
   - component: {fileID: 1544677380974379151}
   - component: {fileID: 1120890651758489738}
-  m_Layer: 1
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 8255777040351431800}
   - component: {fileID: 417521255851102170}
   - component: {fileID: 6635623853021078922}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 7414598266453403519}
   - component: {fileID: 3942903422011861134}
   - component: {fileID: 6166080516327080221}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: CanvasHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 7532431016803737974}
   - component: {fileID: 3998284220739135061}
   - component: {fileID: 900983877556589543}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ImageHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -622,7 +622,7 @@ GameObject:
   - component: {fileID: 6867381830283827739}
   - component: {fileID: 4131050822249520439}
   - component: {fileID: 6378145677008616058}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ImageBackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -865,13 +865,14 @@ GameObject:
   - component: {fileID: 8890630782377023000}
   - component: {fileID: 9125715014297466765}
   - component: {fileID: 7849401325090171724}
+  - component: {fileID: 889572598}
   m_Layer: 6
   m_Name: NPCSoldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6662428218176281706
 Transform:
   m_ObjectHideFlags: 0
@@ -968,10 +969,10 @@ MonoBehaviour:
     IsDrawGizmo: 1
     Scanlayers:
       serializedVersion: 2
-      m_Bits: 128
+      m_Bits: 448
     occlusionlayers:
       serializedVersion: 2
-      m_Bits: 256
+      m_Bits: 512
     Sight: 0
     meshColorInSight: {r: 1, g: 0, b: 0.9086323, a: 0.5019608}
     InsideObject: 1
@@ -985,10 +986,10 @@ MonoBehaviour:
     IsDrawGizmo: 1
     Scanlayers:
       serializedVersion: 2
-      m_Bits: 128
+      m_Bits: 256
     occlusionlayers:
       serializedVersion: 2
-      m_Bits: 256
+      m_Bits: 512
     Sight: 0
     meshColorInSight: {r: 0.4959364, g: 0, b: 1, a: 0.4392157}
     InsideObject: 1
@@ -999,6 +1000,8 @@ MonoBehaviour:
   AimOffset: {fileID: 6334154184387139592}
   ViewEnemy: {fileID: 0}
   ViewAllie: {fileID: 0}
+  countSoldierView: 0
+  countCivilView: 0
   ShootDataView:
     angle: 11
     height: 5
@@ -1009,10 +1012,10 @@ MonoBehaviour:
     IsDrawGizmo: 1
     Scanlayers:
       serializedVersion: 2
-      m_Bits: 128
+      m_Bits: 256
     occlusionlayers:
       serializedVersion: 2
-      m_Bits: 256
+      m_Bits: 512
     Sight: 0
     meshColorInSight: {r: 0, g: 0.08871651, b: 1, a: 0.41960785}
     InsideObject: 1
@@ -1026,10 +1029,10 @@ MonoBehaviour:
     IsDrawGizmo: 1
     Scanlayers:
       serializedVersion: 2
-      m_Bits: 128
+      m_Bits: 256
     occlusionlayers:
       serializedVersion: 2
-      m_Bits: 256
+      m_Bits: 512
     Sight: 0
     meshColorInSight: {r: 1, g: 0.31481785, b: 0, a: 0.5254902}
     InsideObject: 1
@@ -1071,8 +1074,8 @@ MonoBehaviour:
         byteData: 
         byteDataArray: 
       Version: 
-  gizmoViewMode: 0
-  showBehaviorDesignerGizmo: 0
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
 --- !u!195 &4218643270263899987
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1087,7 +1090,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1241,7 +1244,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     F_y: 0
     Singleton: 5
-  speedRotation: 0
+  speedRotation: 50
   DistanceRay: 8
   pointSensor: {fileID: 6334154184387139592}
   mask:
@@ -1249,6 +1252,27 @@ MonoBehaviour:
     m_Bits: 256
   IsGizmos: 1
   ColorGizmos: {r: 1, g: 0, b: 0.75889635, a: 1}
+--- !u!95 &889572598
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7111874606961241446}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7639289157217661634
 GameObject:
   m_ObjectHideFlags: 0

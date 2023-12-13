@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2782395858588147686}
   - component: {fileID: 4649027617530616010}
   - component: {fileID: 2401369241655361415}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ImageBackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 4454147563090119716}
   - component: {fileID: 4454147563090119722}
   - component: {fileID: 4454147563090119723}
-  m_Layer: 1
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,13 +299,14 @@ GameObject:
   - component: {fileID: 4454147564648634067}
   - component: {fileID: 4454147564648634060}
   - component: {fileID: 4454147564648634061}
-  - component: {fileID: 5120715259303342911}
+  - component: {fileID: 2645139103887642913}
   - component: {fileID: 5120715259303342910}
   - component: {fileID: 4454147564648634056}
   - component: {fileID: 4454147564648634057}
   - component: {fileID: 4454147564648634066}
   - component: {fileID: 5120715259303342849}
   - component: {fileID: 5120715259303342848}
+  - component: {fileID: 5050816142203089113}
   m_Layer: 7
   m_Name: NPCCivil
   m_TagString: Untagged
@@ -320,7 +321,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4454147564648634052}
-  m_LocalRotation: {x: -0, y: -0.9020772, z: -0, w: -0.43157473}
+  m_LocalRotation: {x: -0, y: -0.90207756, z: 0, w: -0.43157402}
   m_LocalPosition: {x: 11.07, y: -0.002, z: 6.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -363,7 +364,7 @@ CapsuleCollider:
   m_Height: 2.04
   m_Direction: 1
   m_Center: {x: 0, y: 0.93, z: 0}
---- !u!114 &5120715259303342911
+--- !u!114 &2645139103887642913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -372,12 +373,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4454147564648634052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d91e2b1f563187e49942a003443b67d9, type: 3}
+  m_Script: {fileID: 11500000, guid: b7602e1d3f35b78418378ddf428ec67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBarLocal: {fileID: 8453301826551109146}
   health: 0
-  healthMax: 0
+  healthMax: 100
   AimOffset: {fileID: 4454147564229751042}
   HurtingMe: {fileID: 0}
   typeAgent: 0
@@ -385,6 +386,8 @@ MonoBehaviour:
   Importal: 0
   _UnitGame: 2
   IsCantView: 1
+  Food: 0
+  Water: 0
 --- !u!114 &5120715259303342910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,12 +401,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainDataView:
-    angle: 33
+    angle: 180
     height: 1.78
-    meshColorOutSight: {r: 0.4009434, g: 1, b: 0.46003076, a: 1}
+    meshColorOutSight: {r: 0.4009434, g: 1, b: 0.46003076, a: 0.4627451}
     mesh: {fileID: 0}
     distance: 10
-    Owner: {fileID: 5120715259303342911}
+    Owner: {fileID: 2645139103887642913}
     IsDrawGizmo: 1
     Scanlayers:
       serializedVersion: 2
@@ -412,7 +415,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 512
     Sight: 0
-    meshColorInSight: {r: 1, g: 0, b: 0, a: 1}
+    meshColorInSight: {r: 1, g: 0, b: 0, a: 0.5372549}
     InsideObject: 1
   RadioActionDataView:
     angle: 30
@@ -435,11 +438,11 @@ MonoBehaviour:
   randomWaitScandMin: 1
   randomWaitScandMax: 1
   IsDrawGizmo: 0
-  AimOffset: {fileID: 0}
+  AimOffset: {fileID: 4454147564229751042}
   ViewEnemy: {fileID: 0}
   ViewAllie: {fileID: 0}
-  cantidadSoldierView: 0
-  cantidadZombieView: 0
+  countSoldierView: 0
+  countCivilView: 0
 --- !u!114 &4454147564648634056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,6 +658,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88600a269b40f2445bbe86c9dc6f8947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5050816142203089113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4454147564648634052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f147535137ae06a4d8a03f13c7ce9d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinRate: 5
+  MaxRate: 10
+  eventInvoke:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2645139103887642913}
+        m_TargetAssemblyTypeName: healthHuman, Assembly-CSharp
+        m_MethodName: UpdateHunger
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2645139103887642913}
+        m_TargetAssemblyTypeName: healthHuman, Assembly-CSharp
+        m_MethodName: UpdateThirst
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4454147564834978540
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,7 +808,7 @@ GameObject:
   - component: {fileID: 4454147564884281351}
   - component: {fileID: 4454147564884281344}
   - component: {fileID: 4454147564884281345}
-  m_Layer: 1
+  m_Layer: 0
   m_Name: Vision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -860,7 +904,7 @@ GameObject:
   - component: {fileID: 1249831568526582923}
   - component: {fileID: 5668936240755680168}
   - component: {fileID: 8453301826551109146}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ImageHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -937,7 +981,7 @@ GameObject:
   - component: {fileID: 2248748667652448898}
   - component: {fileID: 5722061838859922803}
   - component: {fileID: 3189261733021746400}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: CanvasHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
