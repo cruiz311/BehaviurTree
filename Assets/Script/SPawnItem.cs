@@ -28,14 +28,16 @@ public class SPawnItem : MonoBehaviour
     public virtual void DiscountItem()
     {
         CountItem = Mathf.Clamp(CountItem-1,0, spawnPoint.Count);
-        Debug.Log("DiscountItem " + CountItem);
+        if (CountItem == 0)
+            StartCoroutine(SpawnItem());
     }
 
-    public void SpawnItem()
+    public IEnumerator SpawnItem()
     {
         for (int i = 1; i <= CountItem; i++)
         {
             DoSpawnPoint();
+            yield return new WaitForSeconds(1);
         }
 
     }
@@ -63,8 +65,8 @@ public class SPawnItem : MonoBehaviour
         Item itemObject = Spawnitem.GetComponent<Item>();
 
         itemObject.Infinity = Infinity;
-        itemObject.eventInvoke.Clear();
-        itemObject.eventInvoke.Add(discountItemInvoke);
+        itemObject.eventInvoke = discountItemInvoke;
+        itemObject._SpawnPoint = select;
     }
 
     public void DrawGizmos()

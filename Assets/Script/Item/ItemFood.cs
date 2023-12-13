@@ -31,8 +31,7 @@ public class ItemFood : Item
             {
                 _healthHuman.SetFood(Food);
             }
-           
-            Destroy(this.gameObject);
+            DestroyItem();
         }
     }
 }
