@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IACharacterVehiculoSoldier : IACharacterVehiculoHuman
+public class IACharacterVehiculoCivil : IACharacterVehiculoHuman
 {
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -33,24 +33,12 @@ public class IACharacterVehiculoSoldier : IACharacterVehiculoHuman
     }
     public override void MoveToStrategy()
     {
-        
-        if (AIEye.ViewEnemy == null) return;
-        Vector3 dir = Vector3.zero; 
-        normales = ColliderWall();
-        if (normales != Vector3.zero)
-            dir = normales;
-        else
-        {
-            dir = (transform.position - AIEye.ViewEnemy.transform.position).normalized;
-        }
-        Vector3 newPosition = transform.position + dir*2;
-        MoveToPosition(newPosition );
-        
-        
+        base.MoveToStrategy();
     }
-
     private void OnDrawGizmos()
     {
         base.DrawGizmos();
     }
+
+
 }

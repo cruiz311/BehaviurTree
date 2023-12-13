@@ -221,7 +221,7 @@ public class IAEyeBase : MonoBehaviour
     public bool IsDrawGizmo = false;
     public Transform AimOffset;
     public Health ViewEnemy;
-    public Health ViewAllie;// { get; set; }
+   
 
     public Vector3 Target { get; set; }
 
@@ -247,24 +247,20 @@ public class IAEyeBase : MonoBehaviour
             return Vector3.zero;
         }
     }
-    public float DistanceAllied
+
+    public bool IsAllies(Health heatlhScan)
     {
-        get
+        for (int j = 0; (health != null && j < health.typeAgentAllies.Count); j++)
         {
-            return (this.ViewAllie != null) ? (transform.position - this.ViewAllie.transform.position).magnitude : -1;
-        }
-    }
-    public Vector3 DirectionAllied
-    {
-        get
-        {
-            if (this.ViewAllie != null)
+            if (health.typeAgentAllies[j] == heatlhScan.typeAgent)
             {
-                return (this.ViewAllie.transform.position - transform.position).normalized;
+                return true;
             }
-            return Vector3.zero;
         }
+
+        return false;
     }
+    
      
     public float DistanceTarget
     {
@@ -322,7 +318,6 @@ public class IAEyeBase : MonoBehaviour
     public virtual void Scan()
     {
         if (health.HurtingMe != null) return;
-        ViewAllie = null;
         ViewEnemy = null;
         Collider[] colliders = Physics.OverlapSphere(transform.position, mainDataView.Distance, mainDataView.Scanlayers);
         CountEnemyView = 0;
@@ -357,7 +352,7 @@ public class IAEyeBase : MonoBehaviour
 
     }
 
-    private void ExtractViewEnemy(ref float min_dist, Health _health)
+    public void ExtractViewEnemy(ref float min_dist, Health _health)
     {
         
         if (!IsAllies(_health))
@@ -372,27 +367,10 @@ public class IAEyeBase : MonoBehaviour
             }
             CountEnemyView++;
         }
-        //else
-        //if (_health.gameObject.CompareTag("Player"))
-        //{
-        //    if (ViewAllie == null)
-        //        ViewAllie = _health;
-        //}
-
     }
 
-    public virtual bool IsAllies(Health heatlhScan)
-    {
-        for (int j = 0; (health != null && j < health.typeAgentAllies.Count); j++)
-        {
-            if (health.typeAgentAllies[j] == heatlhScan.typeAgent)
-            {
-                return true;
-            }
-        }
+    
 
-        return false;
-    }
 
     public virtual bool IsNotIsThis(GameObject obj1, GameObject obj2)
     {

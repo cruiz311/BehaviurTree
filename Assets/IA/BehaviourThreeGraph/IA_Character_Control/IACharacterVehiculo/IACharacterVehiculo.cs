@@ -60,8 +60,8 @@ public class IACharacterVehiculo : IACharacterControl
     }
     public virtual void MoveToAllied()
     {
-        if (AIEye.ViewAllie == null) return;
-        MoveToPosition(AIEye.ViewAllie.transform.position);
+        //if (AIEye.ViewAllie == null) return;
+        //MoveToPosition(AIEye.ViewAllie.transform.position);
     }
     public virtual void MoveToEvadEnemy()
     {
@@ -69,6 +69,7 @@ public class IACharacterVehiculo : IACharacterControl
         Vector3 dir = (transform.position - AIEye.ViewEnemy.transform.position).normalized;
         Vector3 newPosition = transform.position + dir * 5f;
         MoveToPosition(newPosition);
+        LookPosition(newPosition);
     }
 
     Vector3 RandoWander(Vector3 position, float range)
