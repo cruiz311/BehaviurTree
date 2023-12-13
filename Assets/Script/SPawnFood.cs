@@ -10,9 +10,9 @@ public class SPawnFood : SPawnItem
         SpawnItem();
     }
 
-    public void DiscountFood()
-    { 
-    
+    public override void DiscountItem()
+    {
+        base.DiscountItem();
     }
 
     private void OnDrawGizmos()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 [System.Serializable]
 public class SpawnPoint
 {
@@ -14,7 +15,7 @@ public class SpawnPoint
 }
 public class SPawnItem : MonoBehaviour
 {
-    public int CountItem;
+    public int CountItem=0;
     public List<SpawnPoint> spawnPoint = new List<SpawnPoint>();
     public GameObject PrefabItem;
 
@@ -22,9 +23,12 @@ public class SPawnItem : MonoBehaviour
     public bool _DrawGizmo;
     [Range(0,1)]
     public float radiusSphereGizmos;
-    public void DiscountItem()
+    public UnityEvent discountItemInvoke;
+    public bool Infinity = false;
+    public virtual void DiscountItem()
     {
         CountItem = Mathf.Clamp(CountItem-1,0, spawnPoint.Count);
+        Debug.Log("DiscountItem " + CountItem);
     }
 
     public void SpawnItem()
@@ -58,7 +62,9 @@ public class SPawnItem : MonoBehaviour
         select.Active = true;
         Item itemObject = Spawnitem.GetComponent<Item>();
 
-        itemObject.eventInvoke.Add();
+        itemObject.Infinity = Infinity;
+        itemObject.eventInvoke.Clear();
+        itemObject.eventInvoke.Add(discountItemInvoke);
     }
 
     public void DrawGizmos()

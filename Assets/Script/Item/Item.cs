@@ -9,8 +9,9 @@ public class Item : MonoBehaviour
     protected float Rate ;
     public float MinRate;
     public float MaxRate;
-    public UnityEvent eventInvoke;
+    public List< UnityEvent> eventInvoke;
     public LayerMask layerCollider;
+    public bool Infinity = false;
     public void LoadArrayRate()
     {
          
@@ -19,7 +20,10 @@ public class Item : MonoBehaviour
     }
     public void DestroyItem()
     {
-        eventInvoke.Invoke();
+        foreach (var item in eventInvoke)
+        {
+            item.Invoke();
+        }
         Destroy(this.gameObject);
     }
 }

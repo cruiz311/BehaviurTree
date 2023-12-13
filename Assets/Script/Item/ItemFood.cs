@@ -14,7 +14,7 @@ public class ItemFood : Item
     // Update is called once per frame
     void Update()
     {
-        if(FrameRate>Rate)
+        if(FrameRate>Rate && !Infinity)
         {
             DestroyItem();
         }
@@ -31,7 +31,8 @@ public class ItemFood : Item
             {
                 _healthHuman.SetFood(Food);
             }
-            DestroyItem();
+           
+            Destroy(this.gameObject);
         }
     }
 }
