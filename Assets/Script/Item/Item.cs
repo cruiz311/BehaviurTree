@@ -16,13 +16,10 @@ public class Item : MonoBehaviour
     public SpawnPoint _SpawnPoint { get; set; }
     public void LoadArrayRate()
     {
-         
-            Rate = Random.Range(MinRate, MaxRate);
-         
+        Rate = Random.Range(MinRate, MaxRate);
     }
     public void DestroyItem()
     {
-         
         eventInvoke.Invoke();
         if (_SpawnPoint != null)
             _SpawnPoint.Active = false;
