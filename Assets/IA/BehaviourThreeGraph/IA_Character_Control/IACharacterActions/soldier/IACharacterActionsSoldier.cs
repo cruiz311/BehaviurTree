@@ -26,8 +26,11 @@ public class IACharacterActionsSoldier : IACharacterActions
     }
     public void Shoot()
     {
-        
+        if (FrameRate > Rate)
+        {
+            FrameRate = 0;
             Debug.Log("Shoot " + Time.time);
-        
+        }
+        FrameRate += Time.deltaTime;
     }
 }

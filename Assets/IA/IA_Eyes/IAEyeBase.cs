@@ -360,8 +360,6 @@ public class IAEyeBase : MonoBehaviour
            
             float dist = (transform.position - _health.transform.position).magnitude;
 
-            //Debug.Log("_health " + _health.name + "  dist " + dist+ " min_dist "+ min_dist);
-            Debug.Log((min_dist > dist));
             if (min_dist > dist)
             {
                 ViewEnemy = _health;
