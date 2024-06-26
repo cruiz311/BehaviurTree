@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class IACharacterVehiculo : IACharacterControl
 {
@@ -8,9 +9,9 @@ public class IACharacterVehiculo : IACharacterControl
     protected float speedRotation = 0;
 
     public float RangeWander;
-    Vector3 positionWander;
+    protected Vector3 positionWander;
     float FrameRate = 0;
-    float Rate = 4;
+    public float Rate = 4;
     public override void LoadComponent()
     {
         base.LoadComponent();
@@ -72,6 +73,21 @@ public class IACharacterVehiculo : IACharacterControl
         LookPosition(newPosition);
     }
 
+    bool RandoWandergus(Vector3 position, float range, out Vector3 result)
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            Vector3 randP = position + Random.insideUnitSphere * range;
+            NavMeshHit hit;
+            if(NavMesh.SamplePosition(randP, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                result = hit.position;
+                return true;
+            }
+        }
+        result = Vector3.zero;
+        return false;
+    }
     Vector3 RandoWander(Vector3 position, float range)
     {
         Vector3 randP = Random.insideUnitSphere * range;
@@ -82,21 +98,17 @@ public class IACharacterVehiculo : IACharacterControl
     {
         if (AIEye.ViewEnemy != null) return;
 
-        float distance = (transform.position - positionWander).magnitude;
-
-        if(distance<2)
+        Vector3 newPosition;
+        if (RandoWandergus(transform.position, RangeWander, out newPosition))
         {
-            positionWander = RandoWander(transform.position, RangeWander);
+            LookPosition(newPosition);
+            MoveToPosition(newPosition);
         }
-
-        if(FrameRate>Rate)
+        // Optionally handle the case where RandoWandergus fails to find a valid position
+        else
         {
-            FrameRate = 0;
-            positionWander = RandoWander(transform.position, RangeWander);
+            Debug.LogWarning("RandoWandergus failed to find a valid position!");
         }
-        FrameRate += Time.deltaTime;
-
-
-        MoveToPosition(positionWander);
     }
+
 }

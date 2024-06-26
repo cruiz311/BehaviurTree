@@ -77,8 +77,6 @@ public class Health : MonoBehaviour
     public virtual void LoadComponent()
     {
         health = healthMax;
-
-
     }
 
 

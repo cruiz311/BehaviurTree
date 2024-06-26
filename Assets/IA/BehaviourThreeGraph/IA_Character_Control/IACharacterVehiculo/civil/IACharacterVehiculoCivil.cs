@@ -38,6 +38,9 @@ public class IACharacterVehiculoCivil : IACharacterVehiculoHuman
     private void OnDrawGizmos()
     {
         base.DrawGizmos();
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(health.AimOffset.position, positionWander);
+        Gizmos.DrawSphere(positionWander, 1);
     }
 
 

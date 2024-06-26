@@ -37,7 +37,7 @@ public class ActionEvadeEnemy : ActionNodeVehicle
             case UnitGame.Civil:
                 if (_IACharacterVehiculo is IACharacterVehiculoCivil)
                 {
-                    ((IACharacterVehiculoCivil)_IACharacterVehiculo).MoveToEvadEnemy();
+                    ((IACharacterVehiculoCivil)_IACharacterVehiculo).MoveToStrategy();
                 }
                 break;
             case UnitGame.None:
