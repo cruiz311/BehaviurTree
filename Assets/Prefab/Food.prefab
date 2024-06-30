@@ -78,7 +78,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinRate: 15
   MaxRate: 20
-  eventInvoke: []
+  eventInvoke:
+    m_PersistentCalls:
+      m_Calls: []
   layerCollider:
     serializedVersion: 2
     m_Bits: 192
