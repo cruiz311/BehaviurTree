@@ -1,50 +1,59 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
-    public List<Transform> spawnPoints; // Lista de puntos de spawn para los ítems
-    public List<Item> items; // Lista de ítems que pueden ser instanciados
-    public List<Transform> availableSpawnPoints;
-    private void Start()
-    {
-        SpawnItems();
-    }
-    private void Update()
-    {
-        //SpawnItems();
-    }
-    private void SpawnItems()
-    {
-        foreach (Item item in items)
-        {
-            // Seleccionar un punto de spawn aleatorio que no esté ocupado por otro ítem
-            Transform spawnPoint = GetRandomSpawnPoint();
+    public List<GameObject> itemPrefabs; // Lista de prefabs de ítems a spawnear
+    public List<Transform> spawnPoints; // Lista de puntos de spawn
+    public float cooldownTime = 10f; // Tiempo de cooldown en segundos
 
-            // Instanciar el ítem en el punto de spawn seleccionado
-            Instantiate(item, spawnPoint.position, Quaternion.identity);
+    void Start()
+    {
+        StartCoroutine(SpawnItems());
+    }
+
+    IEnumerator SpawnItems()
+    {
+        while (true)
+        {
+            // Esperar hasta que todos los puntos de spawn estén vacíos
+            while (!AllSpawnPointsEmpty())
+            {
+                yield return null;
+            }
+
+            // Spawnear ítems en todos los puntos de spawn
+            foreach (Transform spawnPoint in spawnPoints)
+            {
+                // Seleccionar un ítem al azar de la lista
+                int randomIndex = Random.Range(0, itemPrefabs.Count);
+                GameObject itemPrefab = itemPrefabs[randomIndex];
+
+                // Instanciar el ítem en la posición de spawn
+                Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
+            }
+
+            // Esperar el cooldown antes de comenzar el siguiente ciclo de spawn
+            yield return new WaitForSeconds(cooldownTime);
         }
     }
 
-    private Transform GetRandomSpawnPoint()
+    bool AllSpawnPointsEmpty()
     {
-        // Lista para almacenar los puntos de spawn disponibles
-        //availableSpawnPoints = new List<Transform>();
-
-        // Iterar sobre todos los puntos de spawn
         foreach (Transform spawnPoint in spawnPoints)
         {
-            // Verificar si hay algún ítem en este punto de spawn
-            Collider[] colliders = Physics.OverlapSphere(spawnPoint.position, 0.1f);
-            if (colliders.Length == 0)
+            if (!IsPositionEmpty(spawnPoint.position))
             {
-                // Si no hay ningún ítem en este punto de spawn, agregarlo a la lista de puntos de spawn disponibles
-                availableSpawnPoints.Add(spawnPoint);
+                return false;
             }
         }
+        return true;
+    }
 
-        // Si hay puntos de spawn disponibles, seleccionar uno aleatoriamente; de lo contrario, devolver null
-        return availableSpawnPoints.Count > 0 ? availableSpawnPoints[Random.Range(0, availableSpawnPoints.Count)] : null;
+    bool IsPositionEmpty(Vector3 position)
+    {
+        Collider[] colliders = Physics.OverlapSphere(position, 0.1f);
+        return colliders.Length == 0;
     }
 }
-
