@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
 
 public class IACharacterVehiculo : IACharacterControl
 {
@@ -79,7 +78,7 @@ public class IACharacterVehiculo : IACharacterControl
     Vector3 RandoWander(Vector3 position, float range)
     {
         Vector3 randP = Random.insideUnitSphere * range;
-        randP.y = position.y; // Mantener la misma altura que la posición original
+        randP.y = 0; // Ignorar la altura en este punto
         return position + randP;
     }
 
@@ -98,7 +97,6 @@ public class IACharacterVehiculo : IACharacterControl
                 return;
             }
         }
-        positionWander.y = 0;
         // Mover hacia la posición wander actual y mirar en esa dirección
         MoveToPosition(positionWander);
         LookPosition(positionWander);
@@ -109,14 +107,16 @@ public class IACharacterVehiculo : IACharacterControl
         for (int i = 0; i < 30; i++)
         {
             Vector3 randomPoint = center + Random.insideUnitSphere * range;
+            randomPoint.y = center.y; // Mantener la misma altura que el centro
+
             NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(randomPoint, out hit, range, NavMesh.AllAreas))
             {
                 result = hit.position;
                 return true;
             }
         }
-        result = positionWander;
+        result = center; // Devolver el centro si no se encuentra un punto válido
         return false;
     }
 }

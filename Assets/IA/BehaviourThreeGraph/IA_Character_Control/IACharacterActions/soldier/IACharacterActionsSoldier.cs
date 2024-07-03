@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IACharacterActionsSoldier : IACharacterActions
 {
+    public WeaponBase WeaponBase;
 
     float FrameRate = 0;
     public float Rate=1;

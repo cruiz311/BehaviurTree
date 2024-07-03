@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class IACharacterVehiculoCivil : IACharacterVehiculoHuman
 {
-    
     // Start is called before the first frame update
     void Start()
     {
         this.LoadComponent();
     }
+
     public override void LoadComponent()
     {
         base.LoadComponent();
@@ -19,29 +19,36 @@ public class IACharacterVehiculoCivil : IACharacterVehiculoHuman
     {
         base.MoveToPosition(pos);
     }
+
     public override void MoveToEnemy()
     {
-        base.MoveToEnemy( );
+        base.MoveToEnemy();
     }
+
     public override void MoveToAllied()
     {
-        base.MoveToAllied( );
+        base.MoveToAllied();
     }
+
     public override void MoveToEvadEnemy()
     {
-        base.MoveToEvadEnemy( );
+        base.MoveToEvadEnemy();
     }
+
     public override void MoveToStrategy()
     {
         base.MoveToStrategy();
     }
+
     private void OnDrawGizmos()
     {
         base.DrawGizmos();
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(health.AimOffset.position, positionWander);
-        Gizmos.DrawSphere(positionWander, 1);
+
+        if (health != null && health.AimOffset != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(health.AimOffset.position, positionWander);
+            Gizmos.DrawSphere(positionWander, 1);
+        }
     }
-
-
 }

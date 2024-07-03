@@ -872,7 +872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6662428218176281706
 Transform:
   m_ObjectHideFlags: 0
@@ -947,6 +947,8 @@ MonoBehaviour:
   Importal: 0
   _UnitGame: 1
   IsCantView: 1
+  Food: 0
+  Water: 0
 --- !u!114 &6892155909036524691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1000,6 +1002,7 @@ MonoBehaviour:
   AimOffset: {fileID: 6334154184387139592}
   ViewEnemy: {fileID: 0}
   ViewAllie: {fileID: 0}
+  Item: {fileID: 0}
   countSoldierView: 0
   countCivilView: 0
   ShootDataView:
@@ -1110,6 +1113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f0700b649fa3f44afd1926c9fc9de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponBase: {fileID: 7375597669441697671}
   Rate: 1
 --- !u!114 &9125715014297466765
 MonoBehaviour:
@@ -1124,6 +1128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RangeWander: 15
+  Rate: 4
 --- !u!114 &7849401325090171724
 MonoBehaviour:
   m_ObjectHideFlags: 0
